@@ -1,13 +1,126 @@
 const WORLDS = [
   {
-    id:'determinants', subject:'MATEMÁTICAS II', icon:'🎃', title:'Pumpkin Dungeon',
-    story:'Las puertas del calabozo solo se abren con determinantes correctos.', glow:'#ff8a1f',
-    questions:[
-      {q:'Si det(A)=0, ¿qué afirmación es correcta?', a:['A es invertible','A no es invertible','A es identidad','A tiene determinante 1'], correct:1, explain:'Una matriz cuadrada es invertible si y solo si su determinante es distinto de cero.'},
-      {q:'Si una fila de una matriz se multiplica por 3, ¿qué ocurre con el determinante?', a:['No cambia','Se divide entre 3','Se multiplica por 3','Se hace cero'], correct:2, explain:'Multiplicar una fila por k multiplica el determinante por k.'},
-      {q:'Dos filas proporcionales convierten el determinante en…', a:['1','−1','0','Depende del orden'], correct:2, explain:'Filas linealmente dependientes implican determinante nulo.'}
-    ]
-  },
+    {
+  id: 'determinants',
+  subject: 'MATEMÁTICAS II',
+  icon: '🎃',
+  title: 'Pumpkin Dungeon',
+  story: 'Tres puertas protegen la llave del calabozo. Solo los determinantes correctos romperán la maldición.',
+  glow: '#ff8a1f',
+
+  gameType: 'doors',
+
+  levels: [
+
+    {
+      type: 'doors',
+      title: 'LEVEL 1 · THE THREE DOORS',
+      instruction: 'Calcula los determinantes y abre la puerta cuya matriz tiene determinante 0.',
+
+      doors: [
+        {
+          label: 'PUERTA A',
+          matrix: [
+            [2, 1],
+            [3, 2]
+          ],
+          correct: false
+        },
+        {
+          label: 'PUERTA B',
+          matrix: [
+            [2, 4],
+            [1, 2]
+          ],
+          correct: true
+        },
+        {
+          label: 'PUERTA C',
+          matrix: [
+            [3, 1],
+            [2, 4]
+          ],
+          correct: false
+        }
+      ],
+
+      success: 'La matriz B tiene determinante 0. ¡La puerta maldita ha sido localizada!',
+      error: 'Ese determinante no es cero. Revisa ad − bc.'
+    },
+
+    {
+      type: 'doors',
+      title: 'LEVEL 2 · THE INVERTIBLE GATE',
+      instruction: 'Solo una matriz puede abrir esta puerta. Elige una matriz invertible.',
+
+      doors: [
+        {
+          label: 'PUERTA A',
+          matrix: [
+            [1, 2],
+            [2, 4]
+          ],
+          correct: false
+        },
+        {
+          label: 'PUERTA B',
+          matrix: [
+            [1, 3],
+            [2, 5]
+          ],
+          correct: true
+        },
+        {
+          label: 'PUERTA C',
+          matrix: [
+            [3, 6],
+            [1, 2]
+          ],
+          correct: false
+        }
+      ],
+
+      success: '¡Correcto! Su determinante es distinto de cero, así que tiene inversa.',
+      error: 'La puerta sigue cerrada. Una matriz invertible necesita determinante distinto de cero.'
+    },
+
+    {
+      type: 'number',
+      title: 'LEVEL 3 · THE SECRET PARAMETER',
+      instruction: 'Encuentra el valor de k que hace desaparecer el determinante.',
+
+      matrixHTML: `
+        <div class="matrix-big">
+          |  k &nbsp;&nbsp; 2 |<br>
+          |  3 &nbsp;&nbsp; 6 |
+        </div>
+      `,
+
+      question: '¿Para qué valor de k se cumple |A| = 0?',
+      answer: 1,
+
+      success: '6k − 6 = 0 → k = 1. La última puerta se abre.',
+      error: 'Recuerda: |A| = k·6 − 2·3.'
+    },
+
+    {
+      type: 'bossQuestion',
+      title: 'PCE CHALLENGE',
+      question: 'Si |A| = 0, ¿existe A⁻¹?',
+      options: [
+        'Sí, siempre',
+        'No',
+        'Solo si A es simétrica'
+      ],
+      correct: 1,
+
+      success: 'Exacto. Una matriz tiene inversa si y solo si su determinante es distinto de cero.'
+    }
+
+  ],
+
+  secretCode: '731'
+}
   {
     id:'carbs', subject:'BIOLOGÍA Y12', icon:'🍬', title:'Candy Lab',
     story:'Identifica las muestras dulces antes de que el laboratorio quede sellado.', glow:'#ff4fa3',
