@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Halloween PCE · The Cursed Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="fog fog-1"></div><div class="fog fog-2"></div>
+  <header class="hud">
+    <div class="brand">🎃 HALLOWEEN PCE</div>
+    <div class="stats">
+      <span>❤️ <b id="lives">3</b></span>
+      <span>⭐ <b id="score">0</b></span>
+      <span>🔑 <b id="keys">0</b>/5</span>
+    </div>
+  </header>
+
+  <main id="app">
+    <section id="screen-home" class="screen active">
+      <div class="hero panel">
+        <p class="eyebrow">THE CURSED ACADEMY</p>
+        <h1>La noche de los cinco portales</h1>
+        <p>La Academia PCE ha quedado atrapada entre cinco mundos. Supera sus pruebas, consigue las cinco llaves y derrota al Boss final antes de que termine la noche.</p>
+        <button class="primary" id="startBtn">▶ START GAME</button>
+        <button class="secondary" id="resetBtn">↻ Reiniciar partida</button>
+      </div>
+    </section>
+
+    <section id="screen-map" class="screen">
+      <div class="section-title">
+        <p class="eyebrow">SELECT WORLD</p>
+        <h2>Elige un portal</h2>
+      </div>
+      <div id="worldGrid" class="world-grid"></div>
+      <div class="boss-card locked" id="bossCard">
+        <div class="boss-icon">👹</div>
+        <div><h3>FINAL BOSS</h3><p id="bossStatus">Necesitas las 5 llaves.</p></div>
+        <button id="bossBtn" disabled>Entrar</button>
+      </div>
+    </section>
+
+    <section id="screen-level" class="screen">
+      <button class="back" id="backBtn">← Mapa</button>
+      <div class="level-wrap panel">
+        <div class="level-head">
+          <div class="big-icon" id="levelIcon">🎃</div>
+          <div>
+            <p class="eyebrow" id="levelSubject">ASIGNATURA</p>
+            <h2 id="levelTitle">Nivel</h2>
+            <p id="levelStory"></p>
+          </div>
+        </div>
+        <div class="progress"><div id="progressBar"></div></div>
+        <div id="questionBox" class="question-box"></div>
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+    </section>
+
+    <section id="screen-boss" class="screen">
+      <div class="panel boss-panel">
+        <p class="eyebrow">FINAL BOSS</p>
+        <h2>👹 El Examinador de Medianoche</h2>
+        <p>Usa lo aprendido en los cinco mundos. Tres desafíos. Si sobrevives, rompes la maldición.</p>
+        <div id="bossQuestions"></div>
+      </div>
+    </section>
+
+    <section id="screen-win" class="screen">
+      <div class="panel hero win">
+        <div class="win-icon">🏆🎃</div>
+        <p class="eyebrow">MISSION COMPLETE</p>
+        <h1>¡Academia liberada!</h1>
+        <p>Has reunido las cinco llaves PCE y derrotado al Examinador de Medianoche.</p>
+        <div class="final-score">PUNTUACIÓN: <b id="finalScore">0</b></div>
+        <button class="primary" id="playAgainBtn">Jugar otra vez</button>
+      </div>
+    </section>
+
+    <section id="screen-gameover" class="screen">
+      <div class="panel hero danger">
+        <div class="win-icon">💀</div>
+        <p class="eyebrow">GAME OVER</p>
+        <h1>La maldición continúa...</h1>
+        <p>Has perdido tus tres vidas. Puedes reiniciar y volver a intentarlo.</p>
+        <button class="primary" id="retryBtn">↻ Reintentar</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>Halloween PCE Challenge · GitHub Pages Edition</footer>
+  <script src="questions.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
