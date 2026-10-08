@@ -17,3 +17,168 @@ button{font:600 1rem "Roboto Mono",monospace;border:0;border-radius:12px;padding
 .boss-panel{max-width:850px;margin:4vh auto;padding:36px}.boss-challenge{margin:18px 0;padding:20px;border:1px solid #4f3156;border-radius:14px;background:#130d15}.boss-challenge input{width:100%;margin-top:12px;padding:12px;background:#090b0c;color:#fff;border:1px solid #5d4562;border-radius:10px}.boss-submit{background:var(--purple);color:#fff}.win-icon{font-size:5rem}.final-score{font:700 1.25rem Orbitron;margin:25px;color:var(--green)}.danger{border-color:#6a2c2c}.danger .eyebrow{color:var(--red)}
 footer{text-align:center;color:#637368;padding:30px;font-size:.75rem}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media(max-width:650px){.hud{font-size:.82rem}.stats{gap:9px}.hero{padding:30px 20px}.level-wrap{padding:22px 18px}.level-head{align-items:flex-start}.big-icon{font-size:3.2rem}}
+/* =====================================================
+   PUMPKIN DUNGEON · MUNDO 1
+   ===================================================== */
+
+.door-choice{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255,138,31,.18), transparent 35%),
+    linear-gradient(180deg,#181518 0%,#0d0f0e 100%);
+  border:2px solid #5f4b39;
+  border-radius:18px;
+  color:#f8f4e8;
+  box-shadow:
+    inset 0 0 30px rgba(0,0,0,.9),
+    0 0 0 1px rgba(255,138,31,.08),
+    0 10px 30px rgba(0,0,0,.4);
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease;
+}
+
+.door-choice:hover:not(:disabled){
+  transform:translateY(-6px) scale(1.02);
+  border-color:#ff8a1f;
+  box-shadow:
+    inset 0 0 30px rgba(0,0,0,.85),
+    0 0 22px rgba(255,138,31,.4),
+    0 14px 35px rgba(0,0,0,.5);
+}
+
+.door-choice::before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:1px solid rgba(168,255,62,.12);
+  border-radius:12px;
+  pointer-events:none;
+}
+
+/* Icono de puerta */
+.door-icon{
+  filter:
+    drop-shadow(0 0 8px rgba(255,138,31,.35))
+    drop-shadow(0 8px 5px rgba(0,0,0,.5));
+  transition:transform .3s ease, filter .3s ease;
+}
+
+.door-choice:hover .door-icon{
+  transform:scale(1.08);
+}
+
+/* Etiqueta de puerta */
+.door-choice strong{
+  display:block;
+  margin-top:6px;
+  color:#ff9b38;
+  font-family:'Orbitron',sans-serif;
+  font-size:1rem;
+  letter-spacing:.08em;
+}
+
+/* Matrices */
+.door-choice > div:nth-of-type(2){
+  color:#e9f7df;
+}
+
+/* Puerta correcta */
+.door-choice.correct{
+  border-color:#9cff45 !important;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(156,255,69,.22), transparent 45%),
+    linear-gradient(180deg,#132116,#0a110b);
+  box-shadow:
+    0 0 18px rgba(156,255,69,.45),
+    0 0 45px rgba(156,255,69,.18);
+  animation:doorUnlock .55s ease;
+}
+
+.door-choice.correct .door-icon{
+  filter:
+    drop-shadow(0 0 12px rgba(156,255,69,.85));
+}
+
+/* Puerta incorrecta */
+.door-choice.wrong{
+  border-color:#ff4545 !important;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(255,40,40,.18), transparent 45%),
+    linear-gradient(180deg,#261213,#100909);
+  animation:doorShake .38s ease;
+}
+
+/* Animación de apertura */
+@keyframes doorUnlock{
+  0%{transform:scale(1);}
+  35%{transform:scale(1.08);}
+  70%{transform:scale(.98);}
+  100%{transform:scale(1);}
+}
+
+/* Animación de error */
+@keyframes doorShake{
+  0%,100%{transform:translateX(0);}
+  20%{transform:translateX(-9px);}
+  40%{transform:translateX(8px);}
+  60%{transform:translateX(-6px);}
+  80%{transform:translateX(4px);}
+}
+
+/* Caja del nivel */
+#questionBox{
+  position:relative;
+}
+
+#questionBox::after{
+  content:"";
+  position:absolute;
+  inset:-12px;
+  pointer-events:none;
+  border-radius:22px;
+  box-shadow:inset 0 0 45px rgba(168,255,62,.025);
+}
+
+/* Input del nivel de k */
+#numberAnswer{
+  background:#0d1410;
+  border:2px solid #395b38 !important;
+  color:#fff;
+  outline:none;
+}
+
+#numberAnswer:focus{
+  border-color:#9cff45 !important;
+  box-shadow:0 0 15px rgba(156,255,69,.3);
+}
+
+/* Feedback especial */
+#feedback:not(.hidden){
+  animation:feedbackAppear .3s ease;
+}
+
+@keyframes feedbackAppear{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* Responsive */
+@media(max-width:800px){
+
+  .door-choice{
+    min-height:180px !important;
+  }
+
+  .door-icon{
+    font-size:2.4rem !important;
+  }
+}
