@@ -211,73 +211,129 @@ const WORLDS = [
   // =====================================================
 
   {
-    id: 'carbs',
+    {
+  id: 'carbs',
+  subject: 'BIOLOGÍA Y12',
+  icon: '🍬',
+  title: 'Candy Lab',
 
-    subject: 'BIOLOGÍA Y12',
+  story:
+    'Los glúcidos del laboratorio se han mezclado. Clasifícalos correctamente antes de que la mezcla quede sellada.',
 
-    icon: '🍬',
+  glow: '#ff4fa3',
+  gameType: 'classify',
 
-    title: 'Candy Lab',
+  levels: [
 
-    story:
-      'Identifica las muestras dulces antes de que el laboratorio quede sellado.',
+    {
+      type: 'classify',
 
-    glow: '#ff4fa3',
+      title: 'LEVEL 1 · SUGAR SORT',
 
-    questions: [
+      instruction:
+        'Arrastra cada glúcido a su grupo correcto.',
 
-      {
-        q: '¿Cuál de estos glúcidos es un monosacárido?',
+      bins: [
+        { id: 'mono', label: 'MONOSACÁRIDOS', icon: '🍭' },
+        { id: 'di', label: 'DISACÁRIDOS', icon: '🍬' },
+        { id: 'poly', label: 'POLISACÁRIDOS', icon: '🎃' }
+      ],
 
-        a: [
-          'Sacarosa',
-          'Glucosa',
-          'Almidón',
-          'Glucógeno'
-        ],
+      cards: [
+        { id: 'glucose', label: 'Glucosa', bin: 'mono' },
+        { id: 'fructose', label: 'Fructosa', bin: 'mono' },
+        { id: 'ribose', label: 'Ribosa', bin: 'mono' },
 
-        correct: 1,
+        { id: 'sucrose', label: 'Sacarosa', bin: 'di' },
+        { id: 'lactose', label: 'Lactosa', bin: 'di' },
+        { id: 'maltose', label: 'Maltosa', bin: 'di' },
 
-        explain:
-          'La glucosa es una hexosa y un monosacárido.'
-      },
+        { id: 'starch', label: 'Almidón', bin: 'poly' },
+        { id: 'glycogen', label: 'Glucógeno', bin: 'poly' },
+        { id: 'cellulose', label: 'Celulosa', bin: 'poly' }
+      ],
 
-      {
-        q: 'El enlace que une dos monosacáridos se denomina…',
-
-        a: [
-          'Peptídico',
-          'Éster',
-          'O-glucosídico',
-          'Fosfodiéster'
-        ],
-
-        correct: 2,
-
-        explain:
-          'Los monosacáridos se unen mediante enlace O-glucosídico.'
-      },
-
-      {
-        q: '¿Qué reactivo identifica almidón con coloración azul-negruzca?',
-
-        a: [
-          'Benedict',
-          'Biuret',
-          'Lugol',
-          'Sudán III'
-        ],
-
-        correct: 2,
-
-        explain:
-          'El Lugol forma un complejo coloreado con la amilosa del almidón.'
-      }
-
-    ]
-  },
+      success:
+        '¡Clasificación completada! Has separado correctamente monosacáridos, disacáridos y polisacáridos.'
+    },
 
 
+    {
+      type: 'classify',
+
+      title: 'LEVEL 2 · FUNCTION LAB',
+
+      instruction:
+        'Ahora clasifica cada molécula según su función biológica.',
+
+      bins: [
+        { id: 'plant', label: 'RESERVA VEGETAL', icon: '🌱' },
+        { id: 'animal', label: 'RESERVA ANIMAL', icon: '🐾' },
+        { id: 'structure', label: 'ESTRUCTURAL', icon: '🧱' }
+      ],
+
+      cards: [
+        { id: 'starch2', label: 'Almidón', bin: 'plant' },
+        { id: 'glycogen2', label: 'Glucógeno', bin: 'animal' },
+        { id: 'cellulose2', label: 'Celulosa', bin: 'structure' }
+      ],
+
+      success:
+        'Perfecto. Almidón = reserva vegetal, glucógeno = reserva animal y celulosa = función estructural.'
+    },
+
+
+    {
+      type: 'classify',
+
+      title: 'LEVEL 3 · REDUCING TEST',
+
+      instruction:
+        'Separa los glúcidos reductores de los no reductores.',
+
+      bins: [
+        { id: 'reducing', label: 'REDUCTOR', icon: '🟢' },
+        { id: 'nonreducing', label: 'NO REDUCTOR', icon: '🔴' }
+      ],
+
+      cards: [
+        { id: 'glucose3', label: 'Glucosa', bin: 'reducing' },
+        { id: 'fructose3', label: 'Fructosa', bin: 'reducing' },
+        { id: 'maltose3', label: 'Maltosa', bin: 'reducing' },
+        { id: 'lactose3', label: 'Lactosa', bin: 'reducing' },
+        { id: 'sucrose3', label: 'Sacarosa', bin: 'nonreducing' }
+      ],
+
+      success:
+        'Correcto. La sacarosa es la excepción de este grupo: no presenta poder reductor.'
+    },
+
+
+    {
+      type: 'bossQuestion',
+
+      title: 'PCE CHALLENGE',
+
+      question:
+        '¿Cuál de estas afirmaciones compara correctamente almidón y celulosa?',
+
+      options: [
+        'Ambos son polímeros de β-glucosa y cumplen función estructural.',
+        'El almidón es reserva vegetal y la celulosa tiene función estructural.',
+        'El almidón es reserva animal y la celulosa reserva vegetal.',
+        'Ambos son disacáridos.'
+      ],
+
+      correct: 1,
+
+      success:
+        'Exacto. Ambos son polisacáridos de glucosa, pero presentan distinta estructura y función.'
+    }
+
+  ],
+
+  secretCode: '482'
+},
   // =====================================================
   // MUNDO 3 · QUÍMICA
   // =====================================================
