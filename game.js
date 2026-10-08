@@ -135,6 +135,9 @@ function renderQuestion(){
     case 'number':
       renderNumberLevel(item);
       break;
+      case 'classify':
+  renderClassifyLevel(item);
+  break;
     case 'bossQuestion':
       renderWorldBoss(item);
       break;
@@ -248,7 +251,270 @@ function renderNumberLevel(item){
 
   setTimeout(() => input.focus(), 100);
 }
+// ======================================================
+// CANDY LAB · CLASIFICACIÓN DRAG & DROP
+// ======================================================
 
+function renderClassifyLevel(item){
+
+  const box = $('#questionBox');
+
+  let solved = 0;
+  let selectedCard = null;
+
+  box.innerHTML = `
+    <p class="eyebrow">${item.title}</p>
+
+    <h3>${item.instruction}</h3>
+
+    <p style="opacity:.75;font-size:.9rem;">
+      Puedes arrastrar los caramelos o pulsar primero uno y después su recipiente.
+    </p>
+
+    <div
+      id="candyCards"
+      style="
+        display:flex;
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:12px;
+        margin:25px 0;
+      "
+    >
+
+      ${item.cards.map(card => `
+        <button
+          class="candy-card"
+          draggable="true"
+          data-card="${card.id}"
+          data-bin="${card.bin}"
+          style="
+            padding:12px 18px;
+            border-radius:999px;
+            cursor:grab;
+            font-weight:700;
+            font-size:1rem;
+          "
+        >
+          🍬 ${card.label}
+        </button>
+      `).join('')}
+
+    </div>
+
+
+    <div
+      id="candyBins"
+      style="
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+        gap:15px;
+        margin-top:20px;
+      "
+    >
+
+      ${item.bins.map(bin => `
+        <div
+          class="candy-bin"
+          data-bin="${bin.id}"
+          style="
+            min-height:160px;
+            border:2px dashed rgba(255,255,255,.3);
+            border-radius:18px;
+            padding:18px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+          "
+        >
+
+          <div style="font-size:2rem;">
+            ${bin.icon}
+          </div>
+
+          <strong>
+            ${bin.label}
+          </strong>
+
+          <div
+            class="bin-content"
+            style="
+              display:flex;
+              flex-wrap:wrap;
+              gap:6px;
+              justify-content:center;
+            "
+          ></div>
+
+        </div>
+      `).join('')}
+
+    </div>
+  `;
+
+
+  const cards = [...box.querySelectorAll('.candy-card')];
+  const bins = [...box.querySelectorAll('.candy-bin')];
+
+
+  function selectCard(card){
+
+    cards.forEach(c => {
+      c.style.outline = 'none';
+    });
+
+    selectedCard = card;
+
+    card.style.outline = '3px solid #ff4fa3';
+    card.style.outlineOffset = '3px';
+  }
+
+
+  function tryPlace(card, bin){
+
+    if(!card || card.disabled) return;
+
+    const correctBin = card.dataset.bin;
+    const chosenBin = bin.dataset.bin;
+
+    if(correctBin === chosenBin){
+
+      card.disabled = true;
+      card.draggable = false;
+
+      card.style.cursor = 'default';
+      card.style.opacity = '.9';
+      card.style.outline = 'none';
+
+      const content =
+        bin.querySelector('.bin-content');
+
+      content.appendChild(card);
+
+      bin.style.borderColor = '#8cff66';
+      bin.style.boxShadow =
+        '0 0 18px rgba(140,255,102,.25)';
+
+      solved++;
+
+      state.score += 30;
+      save();
+
+      selectedCard = null;
+
+
+      if(solved === item.cards.length){
+
+        state.score += 100;
+        save();
+
+        showMiniGameSuccess(
+          '🍬 CANDY LAB COMPLETE',
+          item.success,
+          false
+        );
+      }
+
+    }else{
+
+      card.classList.add('wrong');
+
+      setTimeout(() => {
+        card.classList.remove('wrong');
+      }, 450);
+
+      loseMiniGameLife(
+        'Ese glúcido no pertenece a ese grupo. Revisa su estructura o función y vuelve a intentarlo.'
+      );
+
+      selectedCard = null;
+    }
+  }
+
+
+  // -----------------------------
+  // DRAG
+  // -----------------------------
+
+  cards.forEach(card => {
+
+    card.addEventListener('dragstart', event => {
+
+      event.dataTransfer.setData(
+        'text/plain',
+        card.dataset.card
+      );
+
+      card.style.opacity = '.5';
+    });
+
+
+    card.addEventListener('dragend', () => {
+
+      if(!card.disabled){
+        card.style.opacity = '1';
+      }
+    });
+
+
+    // Alternativa mediante clic
+    card.addEventListener('click', () => {
+
+      if(!card.disabled){
+        selectCard(card);
+      }
+    });
+
+  });
+
+
+  bins.forEach(bin => {
+
+    bin.addEventListener('dragover', event => {
+
+      event.preventDefault();
+
+      bin.style.transform = 'scale(1.03)';
+    });
+
+
+    bin.addEventListener('dragleave', () => {
+
+      bin.style.transform = 'scale(1)';
+    });
+
+
+    bin.addEventListener('drop', event => {
+
+      event.preventDefault();
+
+      bin.style.transform = 'scale(1)';
+
+      const id =
+        event.dataTransfer.getData('text/plain');
+
+      const card =
+        box.querySelector(
+          `.candy-card[data-card="${id}"]`
+        );
+
+      tryPlace(card, bin);
+    });
+
+
+    // Alternativa por clic
+    bin.addEventListener('click', () => {
+
+      if(selectedCard){
+        tryPlace(selectedCard, bin);
+      }
+    });
+
+  });
+
+}
 function renderWorldBoss(item){
   const box = $('#questionBox');
 
