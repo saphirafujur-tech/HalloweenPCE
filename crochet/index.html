@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f0e6">
+<meta name="description" content="Diseña patrones de amigurumi, revisa los puntos y visualiza las vueltas en circular.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Diseñador de patrones · Ecosistema de Hilos</title>
+<style>
+:root{color-scheme:light;--paper:#f5f0e6;--card:#fffdf8;--ink:#2e382f;--muted:#777b70;--line:#e5ddcf;--green:#5e7965;--green-pale:#e9eee6;--terra:#bd725c;--terra-pale:#f5e7df;--yellow:#e7bd70;--shadow:0 10px 30px #453c2d0c}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,textarea,input{font:inherit}button{cursor:pointer}.shell{max-width:1180px;margin:auto;padding:20px clamp(14px,3vw,34px) 42px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:7px 0 22px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px}.yarn{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#e7ede3;font-size:23px}.brand strong{display:block;font-size:14px;letter-spacing:.01em}.brand small{display:block;color:var(--muted);font-size:12px}.top-actions{display:flex;gap:8px;flex-wrap:wrap}.button{border:1px solid var(--line);border-radius:11px;padding:9px 13px;background:var(--card);color:var(--ink);box-shadow:0 2px 7px #302d2706}.button:hover{border-color:#aebcae}.button.primary{background:var(--green);border-color:var(--green);color:white}.button.subtle{background:transparent;box-shadow:none}.intro{padding:28px 2px 22px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--terra);font-weight:700}.intro h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(27px,4vw,39px);line-height:1.12;margin:8px 0}.intro p{margin:0;color:var(--muted);max-width:660px}.workspace{display:grid;grid-template-columns:minmax(285px,.82fr) minmax(410px,1.18fr);gap:18px;align-items:start}.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:20px;min-width:0}.panel-title{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.panel h2{font-size:15px;margin:0;font-weight:650}.panel .desc{font-size:12px;color:var(--muted);margin:4px 0 0}.textarea{width:100%;min-height:297px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:14px;background:#fbf9f3;color:var(--ink);font:13px/1.85 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;outline:none}.textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px #5e79651c}.piece-select{width:100%;margin:6px 0 8px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#fbf9f3;color:var(--ink)}#piece-note{min-height:28px;margin:2px 0 8px}.editor-controls{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:11px;flex-wrap:wrap}.hint{font-size:11px;color:var(--muted)}.status{min-height:39px;margin-top:12px;padding:9px 11px;border-radius:10px;background:var(--green-pale);color:#4d6955;font-size:12px}.status.error{background:var(--terra-pale);color:#934e3b}.status strong{font-weight:700}.saved-row{display:flex;align-items:center;gap:8px;margin-top:12px}.saved-row select{min-width:0;flex:1;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:8px;font-size:12px}.tiny{font-size:11px;padding:7px 9px}.result{padding:0;overflow:hidden}.result-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px 14px;border-bottom:1px solid var(--line)}.result-head h2{margin:0;font-size:15px}.result-head p{margin:4px 0 0;font-size:12px;color:var(--muted)}.tabs{display:flex;gap:4px;padding:4px;background:#f1eee6;border-radius:10px;flex:none}.tab{border:0;border-radius:8px;background:transparent;padding:7px 10px;color:var(--muted);font-size:12px}.tab[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 4px #403c3214}.view{padding:16px 20px 20px}.diagram-wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:center}.svg-holder{width:100%;max-width:530px;margin:auto;aspect-ratio:1;position:relative}.svg-holder svg{display:block;width:100%;height:100%}.chart-bg{fill:#fbf9f3}.chart-guide{fill:none;stroke:#ded8cc;stroke-width:1;stroke-dasharray:2 5}.chart-ray{stroke:#e9e4da;stroke-width:.8}.stitch{font-family:Arial,sans-serif;font-weight:700;fill:var(--green);text-anchor:middle;dominant-baseline:central}.stitch.inc{fill:var(--terra)}.stitch.dec{fill:#896755}.stitch.old{opacity:.56}.stitch.selected{filter:drop-shadow(0 1px 2px #352e2055)}.hub{fill:#e7ede3;stroke:#d5dfd2;stroke-width:1}.hub-text{font:10px system-ui,sans-serif;fill:#56705c;text-anchor:middle;dominant-baseline:central}.chart-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 14px;align-content:center;width:100%;max-width:560px;margin:0 auto}.legend-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted)}.legend-mark{width:25px;height:25px;border-radius:8px;background:var(--green-pale);color:var(--green);display:grid;place-items:center;font-size:15px;font-weight:700}.legend-mark.inc{background:var(--terra-pale);color:var(--terra)}.legend-dot{width:7px;height:7px;border-radius:50%;background:#d8d0c2}.legend-dot.on{background:var(--green)}.view-caption{margin:8px 0 0;color:var(--muted);font-size:11px;text-align:center}.round-section{border-top:1px solid var(--line);padding:15px 20px 18px}.round-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px}.color-hint{font-size:10px;color:var(--muted);margin:0 0 8px}.symbol-key{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 0}.symbol-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 7px;border:1px solid var(--line);border-radius:999px;background:#fbf9f3;font-size:10px;color:var(--muted)}.symbol-glyph{font-weight:800;color:var(--green);font-size:14px;display:inline-grid;place-items:center;width:20px;height:20px}.symbol-svg{display:block;width:100%;height:100%}.chart-tools{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 0 12px}.chart-mode{border:1px solid var(--line);border-radius:999px;background:#fbf9f3;padding:7px 12px;color:var(--muted);font-size:11px}.chart-mode[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:white}.focus-note{margin:8px auto 0;max-width:650px;padding:10px 12px;border-radius:10px;background:#f7f4ed;color:var(--ink);font-size:12px;text-align:center}.focus-note strong{color:var(--green)}.round-heading h3{font-size:13px;margin:0}.round-heading span{font-size:11px;color:var(--muted)}.round-list{display:grid;gap:4px;max-height:208px;overflow:auto}.round-row{display:grid;grid-template-columns:minmax(0,1fr) 38px;gap:5px;align-items:center;border:1px solid transparent;border-radius:10px;padding:4px 6px;color:var(--ink)}.round-row:hover{background:#f8f5ed}.round-action{width:100%;display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:9px;align-items:center;text-align:left;border:1px solid transparent;border-radius:8px;padding:5px 3px;background:transparent;color:var(--ink)}.round-action[aria-pressed="true"]{background:var(--green-pale);border-color:#dce5d9}.round-n{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}.round-instruction{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.round-total{font-size:11px;color:var(--muted);white-space:nowrap}.round-total b{color:var(--ink);font-weight:650}.round-color{width:32px;height:28px;padding:2px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}.round-error{font-size:10px;color:var(--terra);grid-column:1/3;margin:0 0 3px 39px}.empty{padding:24px;text-align:center;color:var(--muted);font-size:12px}.footnote{display:flex;gap:7px;align-items:flex-start;margin-top:15px;padding:10px 12px;border-radius:10px;background:#f7f4ed;font-size:11px;color:var(--muted)}.footnote .spark{color:var(--terra)}.install{display:none}.print-only{display:none}
+@media(max-width:860px){.workspace{grid-template-columns:1fr}.editor-panel{order:1}.result{order:2}.textarea{min-height:230px}.diagram-wrap{grid-template-columns:minmax(0,1fr) 145px}.panel{padding:17px}}
+@media(max-width:520px){.shell{padding:12px 12px 28px}.topbar{align-items:flex-start;padding-bottom:15px}.brand{gap:8px}.yarn{width:36px;height:36px;font-size:19px}.brand strong{font-size:12px}.brand small{font-size:10px}.top-actions{gap:5px}.button{padding:8px 10px;font-size:12px}.intro{padding:22px 2px 16px}.intro h1{font-size:29px}.workspace{gap:12px}.result-head{align-items:flex-start;flex-direction:column;padding:16px}.tabs{width:100%}.tab{flex:1}.view{padding:12px 12px 16px}.diagram-wrap{grid-template-columns:1fr}.svg-holder{max-width:370px}.chart-legend{grid-template-columns:1fr 1fr;max-width:370px;margin:2px auto 0}.round-section{padding:13px 13px 15px}.panel{padding:15px}.textarea{min-height:210px}.saved-row{flex-wrap:wrap}.saved-row select{flex-basis:100%}}
+@media print{body{background:#fff}.shell{max-width:none;padding:0}.topbar,.intro,.editor-panel,.tabs,.top-actions,.footnote{display:none!important}.workspace{display:block}.result{box-shadow:none;border:0}.result-head{border:0;padding:4px 0}.view{padding:0}.diagram-wrap{grid-template-columns:1fr 140px}.svg-holder{max-width:460px}.round-section{display:block}.round-row{padding:4px}.print-only{display:block}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar"><div class="brand"><div class="yarn" aria-hidden="true">🧶</div><div><strong>ECOSISTEMA DE HILOS</strong><small>Tu cuaderno de diseño de crochet</small></div></div><div class="top-actions"><button class="button subtle install" id="install-app" type="button">Instalar app</button><button class="button" id="print-pattern" type="button">Imprimir / PDF</button><button class="button primary" id="save-pattern" type="button">Guardar diseño</button></div></header>
+<section class="intro"><span class="eyebrow">Taller de patrones · crochet y amigurumi</span><h1>De tus vueltas al dibujo</h1><p>Escribe las instrucciones y crea un gráfico para piezas circulares, esferas de amigurumi o granny squares. El diseño se muestra en plano, con símbolos de crochet y recuento por vuelta.</p></section>
+<main class="workspace">
+<section class="panel editor-panel"><div class="panel-title"><div><h2>Instrucciones del patrón</h2><p class="desc">Una vuelta por línea. Puedes usar pb, pa, mpa, cad, aumentos, disminuciones y repeticiones.</p></div></div>
+<label class="desc" for="piece-select">Pieza del diseño</label><select class="piece-select" id="piece-select" aria-label="Pieza del patrón"><option value="cabeza">Pieza principal</option><option value="orejas">Pieza 2</option><option value="brazos">Pieza 3</option><option value="piernas">Pieza 4</option></select><p class="desc" id="piece-note"></p>
+<label class="desc" for="shape-select">Forma del gráfico</label><select class="piece-select" id="shape-select" aria-label="Forma del gráfico"><option value="round">Circular · círculo o esfera de amigurumi</option><option value="granny">Granny square</option></select><p class="desc" id="shape-note">Para una esfera, el gráfico muestra las vueltas: aumentos, vueltas rectas y disminuciones.</p>
+<textarea class="textarea" id="pattern-input" aria-label="Instrucciones del patrón" spellcheck="false"></textarea>
+<div class="editor-controls"><span class="hint">También reconoce abreviaturas: pb, pa, mpa, cad, aum, dec y sus equivalentes en inglés.</span><button class="button primary" id="draw-pattern" type="button">Actualizar dibujo</button></div>
+<div class="status" id="status" role="status" aria-live="polite">Preparando el patrón…</div>
+<div class="saved-row"><select id="saved-designs" aria-label="Diseños guardados"><option value="">Mis diseños guardados</option></select><button class="button tiny" id="delete-design" type="button">Eliminar</button></div>
+<div class="footnote"><span class="spark">✦</span><span>El diagrama representa cada vuelta por separado; aumento y disminución tienen símbolos propios. Pulsa una vuelta para resaltarla.</span></div>
+</section>
+<section class="panel result" aria-label="Visualización del patrón">
+<div class="view" id="chart-view"><div class="chart-tools"><button class="chart-mode" id="mode-all" type="button" aria-pressed="true">Patrón completo</button><button class="chart-mode" id="mode-focus" type="button" aria-pressed="false">Ampliar vuelta seleccionada</button></div><div class="diagram-wrap"><div class="svg-holder"><svg id="chart-svg" viewBox="0 0 600 600" role="img" aria-label="Gráfico de crochet con vueltas concéntricas"></svg></div><div class="chart-legend"><div class="legend-item"><span class="legend-mark" data-symbol="chain"></span><span>Cadeneta</span></div><div class="legend-item"><span class="legend-mark" data-symbol="slip"></span><span>Punto raso</span></div><div class="legend-item"><span class="legend-mark" data-symbol="pb"></span><span>Punto bajo</span></div><div class="legend-item"><span class="legend-mark inc" data-symbol="inc"></span><span>Aumento: 2 puntos en la misma base</span></div><div class="legend-item"><span class="legend-mark" data-symbol="hdc"></span><span>Medio punto alto</span></div><div class="legend-item"><span class="legend-mark" data-symbol="dc"></span><span>Punto alto</span></div><div class="legend-item"><span class="legend-mark" data-symbol="tr"></span><span>Punto alto doble</span></div><div class="legend-item"><span class="legend-mark dec" data-symbol="dec"></span><span>Disminución: 2 puntos cerrados juntos</span></div><div class="legend-item"><span class="legend-dot on"></span><span>Vuelta seleccionada</span></div></div></div><p class="view-caption" id="chart-caption">Diagrama de todas las vueltas · pulsa una vuelta para resaltarla</p><p class="focus-note" id="focus-note" hidden></p></div>
+<div class="round-section"><div class="round-heading"><h3>Vueltas del diseño</h3><span id="round-count">5 vueltas</span></div><p class="color-hint">Pulsa el cuadrito para asignar un color de hilo a cada vuelta.</p><div class="round-list" id="round-list"></div><div class="symbol-key" aria-label="Leyenda de símbolos"><span class="symbol-chip"><b class="symbol-glyph">AM</b> anillo mágico</span><span class="symbol-chip"><b class="symbol-glyph" data-symbol="chain"></b> cadeneta</span><span class="symbol-chip"><b class="symbol-glyph" data-symbol="slip"></b> punto raso</span><span class="symbol-chip"><b class="symbol-glyph" data-symbol="pb"></b> punto bajo</span><span class="symbol-chip"><b class="symbol-glyph" data-symbol="inc"></b> aumento</span><span class="symbol-chip"><b class="symbol-glyph" data-symbol="hdc"></b> medio punto alto</span><span class="symbol-chip"><b class="symbol-glyph" data-symbol="dc"></b> punto alto</span><span class="symbol-chip"><b class="symbol-glyph" data-symbol="tr"></b> punto alto doble</span><span class="symbol-chip"><b class="symbol-glyph" data-symbol="dec"></b> disminución</span></div></div>
+</section>
+</main>
+</div>
+<script>
+(()=>{
+const samplePieces={
+ cabeza:`V1. Anillo mágico, 6 pb\nV2. 6 aumentos\nV3. (*1 pb + 1 aumento*) × 6\nV4. (*2 pb + 1 aumento*) × 6\nV5. (*3 pb + 1 aumento*) × 6\nV6. 30 pb\nV7. (*4 pb + 1 aumento*) × 6\nV8. 36 pb\nV9. 36 pb\nV10. (*4 pb + 1 disminución*) × 6\nV11. (*3 pb + 1 disminución*) × 6\nV12. (*2 pb + 1 disminución*) × 6\nV13. (*1 pb + 1 disminución*) × 6\nV14. 6 disminuciones`,
+ orejas:'',brazos:'',piernas:''};
+const pieceNotes={cabeza:'Ejemplo genérico de esfera: aumentar, tejer vueltas rectas y disminuir; ajusta los puntos a tu tensión.',orejas:'Añade aquí las instrucciones de la segunda pieza.',brazos:'Añade aquí las instrucciones de la tercera pieza.',piernas:'Añade aquí las instrucciones de la cuarta pieza.'};
+const grannyTemplate='V1. Anillo mágico, (*3 pa + 2 cad*) × 4\nV2. (*3 pa + 2 cad + 3 pa + 1 cad*) × 4\nV3. (*3 pa + 1 cad*) × 4';
+const $=id=>document.getElementById(id), input=$('pattern-input'), pieceSelect=$('piece-select'), stateKey='hilos-patterns-v2', singleKey='hilos-current-pattern-v2';
+let rounds=[], selected=0, chartMode='all', chartShape='round', lastShape='round', grannyPatternText=grannyTemplate, deferredInstall=null, activePiece='cabeza', pieces={...samplePieces}, pieceColors={}, roundColors=[];
+const yarnPalette=['#5e7965','#bd725c','#7288a4','#d3a54f','#8c6d91','#c9828d','#70a29a','#a77850'];
+const defaultColor=i=>yarnPalette[i%yarnPalette.length];
+function parseLine(original,index,previous){
+ let line=original.replace(/^\s*(?:(?:vuelta|round|rnd|r|v)\s*)?\d+\s*[.):\-]?\s*/i,'').trim();
+ // Expand crochet repeats: (1 pb + 1 aumento)*4 and (*1 pb + 1 aumento*)*4.
+ for(let pass=0;pass<6;pass++){
+  const expanded=line.replace(/\(\s*\*?([^()*]+?)\*?\s*\)\s*(?:\*|x|×)\s*(\d+)/i,(_,sequence,count)=>Array(Number(count)).fill(sequence).join(' + '));
+  if(expanded===line)break; line=expanded;
+ }
+ let expected=null;const expectedMatch=line.match(/\((\d+)\s*(?:pb|puntos?(?:\s*bajos?)?)\s*\)/i);
+ if(expectedMatch){expected=Number(expectedMatch[1]);line=line.replace(expectedMatch[0],' ')}
+ line=line.replace(/\b(anillo\s+m[áa]gico|magic\s+ring|mr)\b/gi,' ');
+ const token=/(\d+)\s*(puntos?\s+altos?\s+dobles?|pad|double\s+treble|dtr|tr|puntos?\s+altos?|pa|double\s+crochet|dc|medios?\s+puntos?\s+altos?|mpa|hdc|cadenetas?|cadena|cad|chains?|ch|disminuciones?|disminucion|dism|dec|aumentos?|aumento|aum|inc|puntos?\s+rasos?|sl\s*st|pb|puntos?\s+bajos?|sc|single\s+crochet)\b/gi;
+ const operations=[];let match,total=0,consumed=0;
+ while((match=token.exec(line))){const n=Number(match[1]),word=match[2].toLowerCase();if(/^(?:aumento|aum|inc)/.test(word)){consumed+=n;for(let j=0;j<n;j++){const group=operations.length+j;operations.push({kind:'inc',group});operations.push({kind:'inc',group})}total+=2*n}else if(/^(?:dismin|dism|dec)/.test(word)){consumed+=2*n;for(let j=0;j<n;j++)operations.push({kind:'dec'});total+=n}else if(/^(?:punto\s+raso|sl)/.test(word)){for(let j=0;j<n;j++)operations.push({kind:'slip'})}else if(/^(?:cadena|cadeneta|cad|chain|ch)/.test(word)){for(let j=0;j<n;j++)operations.push({kind:'chain'});total+=n}else{const kind=/^(?:puntos?\s+altos?\s+dobles?|pad|double\s+treble|dtr|tr)/.test(word)?'dtr':/^(?:puntos?\s+altos?|pa|double\s+crochet|dc)/.test(word)?'dc':/^(?:medios?\s+puntos?\s+altos?|mpa|hdc)/.test(word)?'hdc':'pb';consumed+=n;total+=n;for(let j=0;j<n;j++)operations.push({kind})}}
+ let residue=line.replace(token,' ').replace(/[+,&;*×x()\s.,:!?\-]/g,'').replace(/\b(?:y|de|en|cada)\b/gi,'');
+ const errors=[];
+ if(!operations.length)errors.push('No reconozco los puntos de esta vuelta.');
+ else if(residue)errors.push(`No he reconocido “${residue}”.`);
+ if(expected!==null&&total!==expected)errors.push(`El recuento da ${total}, pero la anotación dice ${expected}.`);
+ if(previous!==null&&operations.length&&consumed!==previous&&!/punto\s+raso|sl\s*st/i.test(line))errors.push(`La vuelta usa ${consumed} puntos de base y la anterior termina con ${previous}.`);
+ return {number:index+1,text:original.trim(),cleanText:original.replace(/^\s*(?:(?:vuelta|round|rnd|r|v)\s*)?\d+\s*[.):\-]?\s*/i,'').trim(),total,consumed,expected,operations,errors};
+}
+function parsePattern(){
+ const lines=input.value.split(/\n/).map(x=>x.trim()).filter(Boolean);let previous=null;
+ rounds=lines.map((line,index)=>{const row=parseLine(line,index,chartShape==='granny'?null:previous);if(row.operations.length)previous=row.total;return row});
+ roundColors=(pieceColors[activePiece]||[]).slice(0,rounds.length);while(roundColors.length<rounds.length)roundColors.push(defaultColor(roundColors.length));pieceColors[activePiece]=roundColors;
+ if(selected>=rounds.length)selected=Math.max(0,rounds.length-1);
+ render();
+}
+function make(tag,attrs={},parent){const el=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);if(parent)parent.appendChild(el);return el}
+function addText(parent,x,y,txt,attrs={}){const el=make('text',{x,y,...attrs},parent);el.textContent=txt;return el}
+function drawStitchSymbol(svg,kind,x,y,size,color,rotation){
+ const g=make('g',{transform:`translate(${x} ${y}) rotate(${rotation})`},svg),sw=Math.max(1.35,size*.14),base={fill:'none',stroke:color,'stroke-width':sw,'stroke-linecap':'round','stroke-linejoin':'round'};
+ if(kind==='chain'){make('ellipse',{cx:0,cy:0,rx:size*.27,ry:size*.42,...base},g);return}
+ if(kind==='slip'){make('circle',{cx:0,cy:0,r:Math.max(1.4,size*.13),fill:color},g);return}
+ if(kind==='pb'){make('path',{d:`M ${-size*.34} ${-size*.34} L ${size*.34} ${size*.34} M ${size*.34} ${-size*.34} L ${-size*.34} ${size*.34}`,...base},g);return}
+ if(kind==='inc'){make('path',{d:`M ${-size*.42} ${-size*.3} L 0 ${size*.32} L ${size*.42} ${-size*.3}`,...base},g);return}
+ if(kind==='dec'){make('path',{d:`M ${-size*.42} ${size*.3} L 0 ${-size*.32} L ${size*.42} ${size*.3}`,...base},g);return}
+ make('path',{d:`M 0 ${size*.38} V ${-size*.18} M ${-size*.38} ${-size*.18} H ${size*.38}`,...base},g);
+ if(kind==='dc'||kind==='tr'||kind==='dtr')make('path',{d:`M ${-size*.23} ${size*.05} L ${size*.12} ${-size*.28}`,...base},g);
+ if(kind==='tr'||kind==='dtr')make('path',{d:`M ${-size*.34} ${size*.26} L ${size*.01} ${-size*.07}`,...base},g);
+ if(kind==='dtr')make('path',{d:`M ${-size*.39} ${size*.4} L ${-size*.04} ${size*.07}`,...base},g);
+}
+function renderSymbolSamples(){
+ document.querySelectorAll('[data-symbol]').forEach(el=>{const kind=el.dataset.symbol,svg=make('svg',{viewBox:'0 0 40 40',class:'symbol-svg','aria-hidden':'true'},el),color=kind==='inc'?'#bd725c':kind==='dec'?'#896755':'#5e7965';drawStitchSymbol(svg,kind,20,20,18,color,0)});
+}
+function drawChart(){
+ const svg=$('chart-svg');svg.innerHTML='';const cx=300,cy=300;
+ make('circle',{cx,cy,r:286,class:'chart-bg'},svg);
+ const maxRounds=Math.max(rounds.length,1), maxR=262, minR=58;
+ if(chartShape==='round')for(let k=0;k<12;k++){const a=k*Math.PI/6;make('line',{x1:cx+36*Math.cos(a),y1:cy+36*Math.sin(a),x2:cx+maxR*Math.cos(a),y2:cy+maxR*Math.sin(a),class:'chart-ray'},svg)}
+ const targets=chartMode==='focus'?(rounds[selected]?[{r:rounds[selected],idx:selected}]:[]):rounds.map((r,idx)=>({r,idx}));
+ targets.forEach(({r,idx})=>{
+  if(!r.operations.length)return;const rad=chartMode==='focus'?242:rounds.length===1?145:minR+(idx+1)*(maxR-minR)/maxRounds;
+  if(chartShape==='granny'){
+   const side=rad*Math.SQRT1_2, x=cx-side, y=cy-side;
+   make('rect',{x,y,width:side*2,height:side*2,rx:2,class:'chart-guide',stroke:idx===selected?'#9cab96':null,'stroke-width':idx===selected?'1.8':null},svg);
+   const corners=[[x,y],[x+side*2,y],[x+side*2,y+side*2],[x,y+side*2]];
+   corners.forEach(([px,py])=>make('circle',{cx:px,cy:py,r:idx===selected?3:2,fill:idx===selected?'#bd725c':'#c9bca8',opacity:idx===selected?'.9':'.58'},svg));
+  }else make('circle',{cx,cy,r:rad,class:'chart-guide',stroke:idx===selected?'#9cab96':null,'stroke-width':idx===selected?'1.6':null},svg);
+  const count=r.operations.length;
+  r.operations.forEach((op,j)=>{
+   if(op.kind==='inc'&&j>0&&r.operations[j-1].kind==='inc'&&r.operations[j-1].group===op.group)return;
+   const next=r.operations[j+1],isIncrease=op.kind==='inc'&&next?.kind==='inc'&&next.group===op.group,position=j+(isIncrease?.5:0),fs=chartMode==='focus'?(count>48?16:count>32?19:22):count>34?12:count>23?14:17,kind=isIncrease?'inc':op.kind,ink=roundColors[idx]||defaultColor(idx);
+   if(chartShape==='granny'){
+    const perimeter=position/count*4,sideIndex=Math.floor(perimeter)%4,t=perimeter-Math.floor(perimeter),half=rad*.7071,left=cx-half,top=cy-half,right=cx+half,bottom=cy+half;
+    const points=[[left+t*2*half,top],[right,top+t*2*half],[right-t*2*half,bottom],[left,bottom-t*2*half]],xy=points[sideIndex],rotation=[0,90,180,270][sideIndex];
+    drawStitchSymbol(svg,kind,xy[0],xy[1],fs,ink,rotation);
+   }else{
+    const step=Math.PI*2/count,a=-Math.PI/2+step*position,x=cx+rad*Math.cos(a),y=cy+rad*Math.sin(a);
+    drawStitchSymbol(svg,kind,x,y,fs,ink,a*180/Math.PI+90);
+   }
+  });
+  if(idx===selected&&chartShape==='round')make('circle',{cx,cy,r:rad-14,fill:'none',stroke:'#6e8a72','stroke-opacity':'.24','stroke-width':'1'},svg);
+  addText(svg,cx,cy-rad+12,String(idx+1),{fill:'#726d62','font-size':'10','font-family':'system-ui,sans-serif','text-anchor':'middle'});
+ });
+ make('circle',{cx,cy,r:30,class:'hub'},svg);if(chartMode==='focus'&&rounds[selected]){addText(svg,cx,cy-5,`V${selected+1}`,{class:'hub-text','font-size':'12'});addText(svg,cx,cy+9,`${rounds[selected].total} pt`,{class:'hub-text','font-size':'8'})}else addText(svg,cx,cy,chartShape==='granny'?'GRANNY':'○',{class:'hub-text','font-size':chartShape==='granny'?'8':'18'});
+}
+function renderList(){
+ const list=$('round-list');list.innerHTML='';
+ if(!rounds.length){list.innerHTML='<div class="empty">Escribe una vuelta para ver el diagrama.</div>';return}
+ rounds.forEach((r,i)=>{
+  const row=document.createElement('div');row.className='round-row';
+  const b=document.createElement('button');b.className='round-action';b.type='button';b.setAttribute('aria-pressed',String(i===selected));
+  const n=document.createElement('span');n.className='round-n';n.textContent=String(i+1).padStart(2,'0');
+  const txt=document.createElement('span');txt.className='round-instruction';txt.textContent=r.cleanText;
+  const total=document.createElement('span');total.className='round-total';total.innerHTML=r.operations.length?`<b>${r.total}</b> puntos`:'—';
+  b.append(n,txt,total);b.addEventListener('click',()=>{selected=i;render()});row.appendChild(b);
+  const color=document.createElement('input');color.type='color';color.className='round-color';color.value=roundColors[i]||defaultColor(i);color.setAttribute('aria-label',`Color del hilo para la vuelta ${i+1}`);color.title=`Color de la vuelta ${i+1}`;
+  color.addEventListener('input',()=>{roundColors[i]=color.value;pieceColors[activePiece]=roundColors;drawChart()});row.appendChild(color);
+  if(r.errors.length){const err=document.createElement('span');err.className='round-error';err.textContent=r.errors.join(' ');row.append(err)}list.appendChild(row);
+ });
+}
+function render(){
+ drawChart();renderList();$('round-count').textContent=`${rounds.length} ${rounds.length===1?'vuelta':'vueltas'}`;
+ const errors=rounds.flatMap((r,i)=>r.errors.map(e=>`Vuelta ${i+1}: ${e}`));const status=$('status');
+ status.classList.toggle('error',errors.length>0);
+ if(!rounds.length){status.textContent='Escribe una instrucción por vuelta.'}
+ else if(errors.length){status.textContent=`Revisar: ${errors.join(' ')}`}
+ else if(chartShape==='granny'){status.textContent=`${rounds.length} vueltas dibujadas · comprueba las esquinas y los espacios de cadeneta con las instrucciones.`}
+ else {const last=rounds.at(-1);status.textContent=`¡Recuento correcto! ${rounds.length} vueltas · ${last.total} puntos en la última vuelta.`}
+ $('mode-all').setAttribute('aria-pressed',String(chartMode==='all'));$('mode-focus').setAttribute('aria-pressed',String(chartMode==='focus'));
+ $('chart-caption').textContent=rounds.length?(chartMode==='focus'?`Vuelta ${selected+1} ampliada · ${rounds[selected]?.operations.length||0} símbolos`:`Vista completa · Vuelta ${selected+1} resaltada`):'El diagrama aparecerá aquí';
+ const focusNote=$('focus-note');focusNote.hidden=chartMode!=='focus'||!rounds.length;if(!focusNote.hidden){const r=rounds[selected],label=document.createElement('strong');label.textContent=`Vuelta ${selected+1} · ${r.total} puntos:`;focusNote.replaceChildren(label,document.createTextNode(` ${r.text}`))}
+}
+function getSaved(){try{return JSON.parse(localStorage.getItem(stateKey)||'[]')}catch{return []}}
+function populateSaved(){const sel=$('saved-designs'),items=getSaved();sel.innerHTML='<option value="">Mis diseños guardados</option>';items.forEach((item,i)=>{const opt=document.createElement('option');opt.value=String(i);opt.textContent=item.name;sel.appendChild(opt)})}
+function switchPiece(){pieces[activePiece]=input.value;pieceColors[activePiece]=roundColors;activePiece=pieceSelect.value;input.value=pieces[activePiece]||'';$('piece-note').textContent=pieceNotes[activePiece]||'';selected=0;parsePattern()}
+pieceSelect.addEventListener('change',switchPiece);$('shape-select').addEventListener('change',e=>{if(lastShape==='round')pieces[activePiece]=input.value;else grannyPatternText=input.value;chartShape=e.target.value;lastShape=chartShape;pieceSelect.disabled=chartShape==='granny';input.value=chartShape==='granny'?grannyPatternText:(pieces[activePiece]||'');$('chart-svg').setAttribute('aria-label',chartShape==='granny'?'Granny square con vueltas cuadradas y símbolos de crochet':'Diagrama circular de crochet en vueltas concéntricas');$('shape-note').textContent=chartShape==='granny'?'Plantilla de granny square: edita grupos, esquinas y cadenetas. El texto escrito guía la colocación exacta.':'Para una esfera, el gráfico muestra las vueltas: aumentos, vueltas rectas y disminuciones.';$('chart-caption').textContent=chartShape==='granny'?'Granny square · vueltas cuadradas con las esquinas destacadas':'Diagrama circular de todas las vueltas';selected=0;parsePattern()});$('mode-all').addEventListener('click',()=>{chartMode='all';render()});$('mode-focus').addEventListener('click',()=>{chartMode='focus';render()});$('draw-pattern').addEventListener('click',()=>{if(chartShape==='granny')grannyPatternText=input.value;else pieces[activePiece]=input.value;parsePattern()});input.addEventListener('input',()=>{if(chartShape==='granny')grannyPatternText=input.value;else pieces[activePiece]=input.value;parsePattern()});
+ $('save-pattern').addEventListener('click',()=>{if(chartShape==='granny')grannyPatternText=input.value;else pieces[activePiece]=input.value;const name=window.prompt('¿Qué nombre le ponemos a este diseño?','Mi diseño de crochet');if(!name||!name.trim())return;const items=getSaved();items.unshift({name:name.trim(),pieces:{...pieces},grannyPatternText,colors:{...pieceColors},shape:chartShape,updated:new Date().toISOString()});localStorage.setItem(stateKey,JSON.stringify(items.slice(0,60)));localStorage.setItem(singleKey,JSON.stringify(pieces));populateSaved();$('saved-designs').value='0';$('status').innerHTML='<strong>Diseño guardado</strong> en este dispositivo.';$('status').classList.remove('error')});
+$('saved-designs').addEventListener('change',e=>{const item=getSaved()[Number(e.target.value)];if(item){pieces=item.pieces?{...item.pieces}:{...samplePieces,cabeza:item.text||''};grannyPatternText=item.grannyPatternText||grannyTemplate;pieceColors=item.colors?{...item.colors}:{};chartShape=item.shape||'round';lastShape=chartShape;$('shape-select').value=chartShape;pieceSelect.disabled=chartShape==='granny';activePiece='cabeza';pieceSelect.value=activePiece;input.value=chartShape==='granny'?grannyPatternText:pieces[activePiece];$('piece-note').textContent=pieceNotes[activePiece];$('shape-note').textContent=chartShape==='granny'?'Plantilla de granny square: edita grupos, esquinas y cadenetas. El texto escrito guía la colocación exacta.':'Para una esfera, el gráfico muestra las vueltas: aumentos, vueltas rectas y disminuciones.';$('chart-svg').setAttribute('aria-label',chartShape==='granny'?'Granny square con vueltas cuadradas y símbolos de crochet':'Diagrama circular de crochet en vueltas concéntricas');selected=0;parsePattern()}});
+$('delete-design').addEventListener('click',()=>{const index=Number($('saved-designs').value);if(!Number.isInteger(index)||$('saved-designs').value==='')return;const items=getSaved();items.splice(index,1);localStorage.setItem(stateKey,JSON.stringify(items));populateSaved()});
+$('print-pattern').addEventListener('click',()=>window.print());
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;$('install-app').style.display='inline-block'});$('install-app').addEventListener('click',async()=>{if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('install-app').style.display='none'});
+try{const items=getSaved();let bunny=items.find(x=>x.name==='Mi patrón de ejemplo');if(!bunny){bunny={name:'Mi patrón de ejemplo',pieces:{...samplePieces},updated:new Date().toISOString()};items.unshift(bunny);localStorage.setItem(stateKey,JSON.stringify(items))}pieces={...samplePieces,...(bunny.pieces||{})};pieceColors={...(bunny.colors||{})};populateSaved();if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}catch{populateSaved()}
+pieceSelect.value=activePiece;input.value=pieces[activePiece];$('piece-note').textContent=pieceNotes[activePiece];renderSymbolSamples();parsePattern();
+})();
+</script>
+</body>
+</html>
