@@ -1,0 +1,12 @@
+{
+  "name": "Ecosistema de Hilos · Diseñador de patrones",
+  "short_name": "Diseñador Crochet",
+  "description": "Crea y visualiza patrones circulares de crochet y amigurumi.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f0e6",
+  "theme_color": "#f5f0e6",
+  "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
