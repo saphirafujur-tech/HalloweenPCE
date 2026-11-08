@@ -115,7 +115,7 @@ function drawStitchSymbol(svg,kind,x,y,size,color,rotation){
  if(kind==='inc'){make('path',{d:`M ${-size*.42} ${-size*.3} L 0 ${size*.32} L ${size*.42} ${-size*.3}`,...base},g);return}
  if(kind==='dec'){make('path',{d:`M ${-size*.42} ${size*.3} L 0 ${-size*.32} L ${size*.42} ${size*.3}`,...base},g);return}
  make('path',{d:`M 0 ${size*.38} V ${-size*.18} M ${-size*.38} ${-size*.18} H ${size*.38}`,...base},g);
- if(kind==='dc'||kind==='tr'||kind==='dtr')make('path',{d:`M ${-size*.23} ${size*.05} L ${size*.12} ${-size*.28}`,...base},g);
+ if(kind==='dc'||kind==='tr'||kind==='dtr')make('path',{d:`M ${-size*.23} ${-size*.02} L ${size*.12} ${size*.2}`,...base},g);
  if(kind==='tr'||kind==='dtr')make('path',{d:`M ${-size*.34} ${size*.26} L ${size*.01} ${-size*.07}`,...base},g);
  if(kind==='dtr')make('path',{d:`M ${-size*.39} ${size*.4} L ${-size*.04} ${size*.07}`,...base},g);
 }
