@@ -58,7 +58,10 @@
 </div>
 <script>
 (()=>{
-const samplePieces={\n cabeza:`V1. Anillo mágico, 6 pb\\nV2. 6 aumentos\\nV3. (*1 pb + 1 aumento*) × 6\\nV4. 18 pb`,\n orejas:'', brazos:'', piernas:''};\nconst pieceNotes={cabeza:'Ejemplo circular básico. Cambia el patrón y los puntos para crear tu propio diseño.',orejas:'Añade las instrucciones de esta pieza.',brazos:'Añade las instrucciones de esta pieza.',piernas:'Añade las instrucciones de esta pieza.'};
+const samplePieces={
+ cabeza:`V1. Anillo mágico, 6 pb\nV2. 6 aumentos\nV3. (*1 pb + 1 aumento*) × 6\nV4. 18 pb`,
+ orejas:'', brazos:'', piernas:''};
+const pieceNotes={cabeza:'Ejemplo circular básico. Cambia el patrón y los puntos para crear tu propio diseño.',orejas:'Añade las instrucciones de esta pieza.',brazos:'Añade las instrucciones de esta pieza.',piernas:'Añade las instrucciones de esta pieza.'};
 const grannyTemplate='V1. Anillo mágico, (*3 pa + 2 cad*) × 4\nV2. (*3 pa + 2 cad + 3 pa + 1 cad*) × 4\nV3. (*3 pa + 1 cad*) × 4';
 const $=id=>document.getElementById(id), input=$('pattern-input'), pieceSelect=$('piece-select'), stateKey='hilos-patterns-v2', singleKey='hilos-current-pattern-v2';
 const blankPieces={cabeza:'',orejas:'',brazos:'',piernas:''};
